@@ -1,31 +1,1338 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+
+    <title>Student Registration</title>
+
+    <style>
+
+        /* =====================================================
+           RESET
+        ===================================================== */
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+
+        /* =====================================================
+           BODY
+        ===================================================== */
+
+        body {
+            min-height: 100vh;
+
+            font-family:
+                Arial,
+                Helvetica,
+                sans-serif;
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            padding: 30px;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #ff4f91,
+                    #f36ba8,
+                    #ff78ae
+                );
+
+            overflow-x: hidden;
+        }
+
+
+        /* =====================================================
+           MAIN CONTAINER
+        ===================================================== */
+
+        .page {
+            width: 100%;
+            max-width: 1450px;
+
+            min-height: 800px;
+
+            display: grid;
+
+            grid-template-columns:
+                1.15fr 0.85fr;
+
+            position: relative;
+
+            overflow: hidden;
+
+            border-radius: 30px;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #ff5798,
+                    #f778b0
+                );
+
+            box-shadow:
+                0 30px 80px
+                rgba(90, 20, 60, 0.35);
+
+            animation:
+                pageEnter 0.8s ease;
+        }
+
+
+        /* =====================================================
+           LEFT SIDE
+        ===================================================== */
+
+        .illustration {
+            position: relative;
+
+            min-height: 800px;
+
+            display: flex;
+
+            justify-content: center;
+
+            align-items: center;
+
+            overflow: hidden;
+        }
+
+
+        /* BIG CIRCLE */
+
+        .circle {
+            position: absolute;
+
+            width: 850px;
+            height: 850px;
+
+            border-radius: 50%;
+
+            background:
+                rgba(255, 190, 220, 0.38);
+
+            left: -250px;
+            top: -30px;
+
+            animation:
+                circleMove 8s ease-in-out infinite;
+        }
+
+
+        /* SECOND CIRCLE */
+
+        .circle-two {
+            position: absolute;
+
+            width: 500px;
+            height: 500px;
+
+            border-radius: 50%;
+
+            background:
+                rgba(255, 255, 255, 0.08);
+
+            right: -250px;
+            bottom: -200px;
+
+            animation:
+                circleMove2 7s ease-in-out infinite;
+        }
+
+
+        /* =====================================================
+           ILLUSTRATION CONTENT
+        ===================================================== */
+
+        .illustration-content {
+            position: relative;
+
+            z-index: 5;
+
+            width: 100%;
+
+            text-align: center;
+
+            padding-top: 20px;
+        }
+
+
+        .illustration-content h1 {
+            color: white;
+
+            font-size: 46px;
+
+            font-weight: 800;
+
+            margin-bottom: 8px;
+
+            text-shadow:
+                0 8px 20px
+                rgba(100, 20, 60, 0.25);
+        }
+
+
+        .illustration-content p {
+            color: white;
+
+            font-size: 18px;
+
+            margin-bottom: 20px;
+
+            opacity: 0.95;
+        }
+
+
+        /* =====================================================
+           STUDENT IMAGE
+        ===================================================== */
+
+        .student-image {
+            width: min(650px, 90%);
+
+            max-height: 650px;
+
+            object-fit: contain;
+
+            display: block;
+
+            margin: auto;
+
+            filter:
+                drop-shadow(
+                    0 25px 25px
+                    rgba(80, 20, 60, 0.25)
+                );
+
+            animation:
+                studentFloat 5s ease-in-out infinite;
+
+            transition:
+                transform 0.5s ease,
+                filter 0.5s ease;
+        }
+
+
+        .student-image:hover {
+            transform:
+                translateY(-10px)
+                scale(1.02);
+
+            filter:
+                drop-shadow(
+                    0 35px 35px
+                    rgba(80, 20, 60, 0.35)
+                );
+        }
+
+
+        /* =====================================================
+           FORM SIDE
+        ===================================================== */
+
+        .form-container {
+            position: relative;
+
+            z-index: 10;
+
+            display: flex;
+
+            justify-content: center;
+
+            align-items: center;
+
+            padding: 50px;
+        }
+
+
+        /* =====================================================
+           FORM CARD
+        ===================================================== */
+
+        form {
+            width: 100%;
+
+            max-width: 620px;
+
+            background: white;
+
+            border-radius: 25px;
+
+            padding:
+                35px
+                40px
+                38px;
+
+            box-shadow:
+                0 25px 60px
+                rgba(60, 20, 50, 0.22);
+
+            animation:
+                formEnter 0.9s ease;
+
+            transition:
+                transform 0.4s ease,
+                box-shadow 0.4s ease;
+        }
+
+
+        form:hover {
+            transform:
+                translateY(-5px);
+
+            box-shadow:
+                0 35px 75px
+                rgba(60, 20, 50, 0.28);
+        }
+
+
+        fieldset {
+            border: none;
+        }
+
+
+        /* =====================================================
+           TITLE
+        ===================================================== */
+
+        legend {
+            width: 100%;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            gap: 12px;
+
+            color: #173b78;
+
+            font-size: 30px;
+
+            font-weight: 800;
+
+            text-transform: uppercase;
+
+            margin-bottom: 30px;
+        }
+
+
+        /* Graduation cap */
+
+        legend::before {
+            content: "🎓";
+
+            font-size: 30px;
+        }
+
+
+        /* =====================================================
+           FORM GROUP
+        ===================================================== */
+
+        .form-group {
+            margin-bottom: 18px;
+
+            animation:
+                inputEnter 0.6s ease both;
+        }
+
+
+        .form-group:nth-child(2) {
+            animation-delay: 0.08s;
+        }
+
+        .form-group:nth-child(3) {
+            animation-delay: 0.16s;
+        }
+
+        .form-group:nth-child(4) {
+            animation-delay: 0.24s;
+        }
+
+        .form-group:nth-child(5) {
+            animation-delay: 0.32s;
+        }
+
+        .form-group:nth-child(6) {
+            animation-delay: 0.40s;
+        }
+
+        .form-group:nth-child(7) {
+            animation-delay: 0.48s;
+        }
+
+        .form-group:nth-child(8) {
+            animation-delay: 0.56s;
+        }
+
+
+        /* =====================================================
+           LABEL
+        ===================================================== */
+
+        .main-label {
+            display: block;
+
+            color: #1e293b;
+
+            font-size: 15px;
+
+            font-weight: 700;
+
+            margin-bottom: 8px;
+        }
+
+
+        .required {
+            color: #e63946;
+        }
+
+
+        /* =====================================================
+           INPUTS
+        ===================================================== */
+
+        input[type="text"],
+        input[type="email"],
+        input[type="password"],
+        input[type="number"],
+        select,
+        textarea {
+
+            width: 100%;
+
+            height: 50px;
+
+            padding:
+                0 15px;
+
+            border:
+                1.5px solid #d9ddea;
+
+            border-radius: 11px;
+
+            outline: none;
+
+            background: #ffffff;
+
+            color: #1e293b;
+
+            font-size: 15px;
+
+            transition:
+                border-color 0.3s ease,
+                box-shadow 0.3s ease,
+                transform 0.3s ease,
+                background 0.3s ease;
+        }
+
+
+        input::placeholder,
+        textarea::placeholder {
+            color: #8993a8;
+        }
+
+
+        /* =====================================================
+           INPUT FOCUS
+        ===================================================== */
+
+        input[type="text"]:focus,
+        input[type="email"]:focus,
+        input[type="password"]:focus,
+        input[type="number"]:focus,
+        select:focus,
+        textarea:focus {
+
+            border-color: #3478f6;
+
+            background: #ffffff;
+
+            box-shadow:
+                0 0 0 4px
+                rgba(52, 120, 246, 0.10);
+
+            transform:
+                translateY(-2px);
+        }
+
+
+        /* =====================================================
+           SELECT
+        ===================================================== */
+
+        select {
+            cursor: pointer;
+
+            appearance: auto;
+        }
+
+
+        /* =====================================================
+           TEXTAREA
+        ===================================================== */
+
+        textarea {
+            height: 110px;
+
+            padding: 14px;
+
+            resize: vertical;
+
+            line-height: 1.5;
+        }
+
+
+        /* =====================================================
+           RADIO / CHECKBOX AREA
+        ===================================================== */
+
+        .options {
+            display: flex;
+
+            align-items: center;
+
+            flex-wrap: wrap;
+
+            gap: 25px;
+        }
+
+
+        .option {
+            display: flex;
+
+            align-items: center;
+
+            gap: 8px;
+
+            color: #273142;
+
+            font-size: 15px;
+
+            cursor: pointer;
+
+            transition:
+                transform 0.25s ease,
+                color 0.25s ease;
+        }
+
+
+        .option:hover {
+            color: #165dcc;
+
+            transform:
+                translateY(-2px);
+        }
+
+
+        input[type="radio"],
+        input[type="checkbox"] {
+
+            width: 19px;
+            height: 19px;
+
+            cursor: pointer;
+
+            accent-color: #216df3;
+        }
+
+
+        /* =====================================================
+           BUTTONS
+        ===================================================== */
+
+        .buttons {
+            display: grid;
+
+            grid-template-columns: 1fr 1fr;
+
+            gap: 18px;
+
+            margin-top: 25px;
+        }
+
+
+        button {
+            height: 55px;
+
+            border: none;
+
+            border-radius: 13px;
+
+            font-size: 16px;
+
+            font-weight: 700;
+
+            cursor: pointer;
+
+            transition:
+                transform 0.3s ease,
+                box-shadow 0.3s ease,
+                background 0.3s ease;
+        }
+
+
+        /* REGISTER */
+
+        .register-btn {
+            color: white;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #1455d9,
+                    #287cf5
+                );
+
+            box-shadow:
+                0 10px 22px
+                rgba(32, 104, 229, 0.30);
+        }
+
+
+        /* RESET */
+
+        .reset-btn {
+            color: #1f2937;
+
+            background:
+                #eef0f5;
+        }
+
+
+        /* BUTTON HOVER */
+
+        button:hover {
+            transform:
+                translateY(-4px);
+
+            box-shadow:
+                0 14px 25px
+                rgba(0, 0, 0, 0.15);
+        }
+
+
+        .register-btn:hover {
+            background:
+                linear-gradient(
+                    135deg,
+                    #0f45ba,
+                    #1769df
+                );
+        }
+
+
+        .reset-btn:hover {
+            background:
+                #e1e4eb;
+        }
+
+
+        button:active {
+            transform:
+                translateY(1px)
+                scale(0.98);
+        }
+
+
+        /* =====================================================
+           ANIMATED SHINE
+        ===================================================== */
+
+        .register-btn {
+            position: relative;
+
+            overflow: hidden;
+        }
+
+
+        .register-btn::before {
+            content: "";
+
+            position: absolute;
+
+            top: 0;
+
+            left: -120%;
+
+            width: 60%;
+
+            height: 100%;
+
+            background:
+                linear-gradient(
+                    90deg,
+                    transparent,
+                    rgba(255,255,255,0.35),
+                    transparent
+                );
+
+            transform:
+                skewX(-20deg);
+
+            transition:
+                left 0.7s ease;
+        }
+
+
+        .register-btn:hover::before {
+            left: 140%;
+        }
+
+
+        /* =====================================================
+           ANIMATIONS
+        ===================================================== */
+
+        @keyframes pageEnter {
+
+            from {
+                opacity: 0;
+
+                transform:
+                    scale(0.96);
+            }
+
+            to {
+                opacity: 1;
+
+                transform:
+                    scale(1);
+            }
+        }
+
+
+        @keyframes formEnter {
+
+            from {
+                opacity: 0;
+
+                transform:
+                    translateX(60px)
+                    scale(0.96);
+            }
+
+            to {
+                opacity: 1;
+
+                transform:
+                    translateX(0)
+                    scale(1);
+            }
+        }
+
+
+        @keyframes inputEnter {
+
+            from {
+                opacity: 0;
+
+                transform:
+                    translateY(15px);
+            }
+
+            to {
+                opacity: 1;
+
+                transform:
+                    translateY(0);
+            }
+        }
+
+
+        @keyframes studentFloat {
+
+            0% {
+                transform:
+                    translateY(0);
+            }
+
+            50% {
+                transform:
+                    translateY(-12px);
+            }
+
+            100% {
+                transform:
+                    translateY(0);
+            }
+        }
+
+
+        @keyframes circleMove {
+
+            0% {
+                transform:
+                    translate(0, 0)
+                    scale(1);
+            }
+
+            50% {
+                transform:
+                    translate(30px, -20px)
+                    scale(1.04);
+            }
+
+            100% {
+                transform:
+                    translate(0, 0)
+                    scale(1);
+            }
+        }
+
+
+        @keyframes circleMove2 {
+
+            0% {
+                transform:
+                    translate(0, 0);
+            }
+
+            50% {
+                transform:
+                    translate(-30px, -20px);
+            }
+
+            100% {
+                transform:
+                    translate(0, 0);
+            }
+        }
+
+
+        /* =====================================================
+           TABLET
+        ===================================================== */
+
+        @media (max-width: 1050px) {
+
+            body {
+                padding: 20px;
+            }
+
+            .page {
+                grid-template-columns:
+                    1fr 1fr;
+
+                min-height: 700px;
+            }
+
+            .illustration-content h1 {
+                font-size: 36px;
+            }
+
+            .student-image {
+                width: 95%;
+            }
+
+            .form-container {
+                padding: 30px;
+            }
+
+            form {
+                padding: 30px;
+            }
+
+            legend {
+                font-size: 25px;
+            }
+        }
+
+
+        /* =====================================================
+           MOBILE
+        ===================================================== */
+
+        @media (max-width: 800px) {
+
+            body {
+                padding: 15px;
+
+                align-items: flex-start;
+            }
+
+
+            .page {
+                grid-template-columns: 1fr;
+
+                min-height: auto;
+
+                border-radius: 22px;
+            }
+
+
+            .illustration {
+                min-height: 420px;
+            }
+
+
+            .circle {
+                width: 600px;
+                height: 600px;
+
+                left: -120px;
+            }
+
+
+            .illustration-content h1 {
+                font-size: 34px;
+            }
+
+
+            .illustration-content p {
+                font-size: 15px;
+            }
+
+
+            .student-image {
+                width: 85%;
+
+                max-height: 330px;
+            }
+
+
+            .form-container {
+                padding: 20px;
+            }
+
+
+            form {
+                padding: 25px 20px;
+
+                border-radius: 20px;
+            }
+
+
+            legend {
+                font-size: 22px;
+
+                margin-bottom: 25px;
+            }
+
+
+            .buttons {
+                grid-template-columns: 1fr;
+            }
+        }
+
+
+        /* =====================================================
+           SMALL MOBILE
+        ===================================================== */
+
+        @media (max-width: 450px) {
+
+            .illustration {
+                min-height: 350px;
+            }
+
+
+            .illustration-content h1 {
+                font-size: 28px;
+            }
+
+
+            .student-image {
+                width: 95%;
+            }
+
+
+            .options {
+                gap: 15px;
+            }
+
+
+            form {
+                padding: 22px 16px;
+            }
+        }
+
+    </style>
+
 </head>
+
+
 <body>
-   
-    <h1> My WEB DEVELOPMENT SKILLS</h1>
 
-    <hr>
-    <ul>Frontend
-        <li>HTML</li>
-        <li>CSS</li>
-        <li>JavaScript</li>
-    </ul>
 
-    <ul>Backend
-        <li>Java</li>
-        <li>Python</li>
-        <li>Node.js</li>
-    </ul>
+    <!-- =====================================================
+         MAIN PAGE
+    ===================================================== -->
 
-    <ul> Technologies
-        <ul> HTML</ul>
-        <P>structure of Webpage</P>
-    </ul>
-    
+    <div class="page">
+
+
+        <!-- =================================================
+             LEFT ILLUSTRATION
+        ================================================= -->
+
+        <section class="illustration">
+
+            <div class="circle"></div>
+
+            <div class="circle-two"></div>
+
+
+            <div class="illustration-content">
+
+                <h1>
+                    Welcome!
+                </h1>
+
+                <p>
+                    Join our student community
+                </p>
+
+
+                <!--
+                    Keep "image copy.png" in the same
+                    folder as this HTML file.
+                -->
+
+                <img
+                    class="student-image"
+                    src="image copy.png"
+                    alt="Student learning with laptop">
+
+            </div>
+
+        </section>
+
+
+        <!-- =================================================
+             RIGHT FORM
+        ================================================= -->
+
+        <section class="form-container">
+
+
+            <form>
+
+
+                <fieldset>
+
+
+                    <legend>
+                        Student Registration
+                    </legend>
+
+
+                    <!-- NAME -->
+
+                    <div class="form-group">
+
+                        <label
+                            class="main-label"
+                            for="name">
+
+                            Name
+                            <span class="required">*</span>
+
+                        </label>
+
+
+                        <input
+                            type="text"
+                            id="name"
+                            name="name"
+                            placeholder="Enter your name"
+                            required>
+
+                    </div>
+
+
+                    <!-- EMAIL -->
+
+                    <div class="form-group">
+
+                        <label
+                            class="main-label"
+                            for="email">
+
+                            Email
+                            <span class="required">*</span>
+
+                        </label>
+
+
+                        <input
+                            type="email"
+                            id="email"
+                            name="email"
+                            placeholder="Enter your email"
+                            required>
+
+                    </div>
+
+
+                    <!-- PASSWORD -->
+
+                    <div class="form-group">
+
+                        <label
+                            class="main-label"
+                            for="password">
+
+                            Password
+                            <span class="required">*</span>
+
+                        </label>
+
+
+                        <input
+                            type="password"
+                            id="password"
+                            name="password"
+                            placeholder="Enter your password"
+                            required>
+
+                    </div>
+
+
+                    <!-- AGE -->
+
+                    <div class="form-group">
+
+                        <label
+                            class="main-label"
+                            for="age">
+
+                            Age
+
+                        </label>
+
+
+                        <input
+                            type="number"
+                            id="age"
+                            name="age"
+                            placeholder="Enter your age"
+                            min="18"
+                            max="60">
+
+                    </div>
+
+
+                    <!-- GENDER -->
+
+                    <div class="form-group">
+
+                        <label class="main-label">
+
+                            Gender
+
+                        </label>
+
+
+                        <div class="options">
+
+
+                            <label class="option">
+
+                                <input
+                                    type="radio"
+                                    name="gender"
+                                    value="male"
+                                    required>
+
+                                Male
+
+                            </label>
+
+
+                            <label class="option">
+
+                                <input
+                                    type="radio"
+                                    name="gender"
+                                    value="female">
+
+                                Female
+
+                            </label>
+
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- COURSE -->
+
+                    <div class="form-group">
+
+                        <label
+                            class="main-label"
+                            for="course">
+
+                            Course
+
+                        </label>
+
+
+                        <select
+                            id="course"
+                            name="course"
+                            required>
+
+
+                            <option value="">
+
+                                Select Course
+
+                            </option>
+
+
+                            <option value="cse">
+
+                                CSE
+
+                            </option>
+
+
+                            <option value="aiml">
+
+                                AI / ML
+
+                            </option>
+
+
+                            <option value="aids">
+
+                                AI & DS
+
+                            </option>
+
+
+                        </select>
+
+                    </div>
+
+
+                    <!-- SKILLS -->
+
+                    <div class="form-group">
+
+                        <label class="main-label">
+
+                            Skills
+
+                        </label>
+
+
+                        <div class="options">
+
+
+                            <label class="option">
+
+                                <input
+                                    type="checkbox"
+                                    name="skills"
+                                    value="html">
+
+                                HTML
+
+                            </label>
+
+
+                            <label class="option">
+
+                                <input
+                                    type="checkbox"
+                                    name="skills"
+                                    value="css">
+
+                                CSS
+
+                            </label>
+
+
+                            <label class="option">
+
+                                <input
+                                    type="checkbox"
+                                    name="skills"
+                                    value="java">
+
+                                Java
+
+                            </label>
+
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- ABOUT -->
+
+                    <div class="form-group">
+
+                        <label
+                            class="main-label"
+                            for="message">
+
+                            About
+
+                        </label>
+
+
+                        <textarea
+                            id="message"
+                            name="message"
+                            placeholder="Write something about yourself..."></textarea>
+
+                    </div>
+
+
+                    <!-- BUTTONS -->
+
+                    <div class="buttons">
+
+
+                        <button
+                            type="submit"
+                            class="register-btn">
+
+                            ➤ &nbsp; Register
+
+                        </button>
+
+
+                        <button
+                            type="reset"
+                            class="reset-btn">
+
+                            ↻ &nbsp; Reset
+
+                        </button>
+
+
+                    </div>
+
+
+                </fieldset>
+
+
+            </form>
+
+
+        </section>
+
+
+    </div>
+
+
 </body>
+
 </html>
