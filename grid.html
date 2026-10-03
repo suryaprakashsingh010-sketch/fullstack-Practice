@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>CSS Grid Dashboard</title>
+
+    <link rel="stylesheet" href="style.css">
+
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            min-height: 100vh;
+
+            font-family: Arial, sans-serif;
+
+            background: #f1f5f9;
+        }
+
+        .dashboard {
+            min-height: 100vh;
+
+            display: grid;
+
+            grid-template-columns:
+                220px 1fr;
+
+            grid-template-rows:
+                70px 1fr 60px;
+
+            grid-template-areas:
+                "header header"
+                "sidebar content"
+                "footer footer";
+        }
+
+        .header {
+            grid-area: header;
+
+            display: flex;
+
+            align-items: center;
+
+            padding: 0 30px;
+
+            background: #111827;
+
+            color: white;
+
+            font-size: 24px;
+
+            font-weight: bold;
+        }
+
+        .sidebar {
+            grid-area: sidebar;
+
+            padding: 25px;
+
+            background: #1e293b;
+
+            color: white;
+        }
+
+        .sidebar h2 {
+            margin-bottom: 20px;
+        }
+
+        .sidebar a {
+            display: block;
+
+            margin-bottom: 15px;
+
+            color: white;
+
+            text-decoration: none;
+        }
+
+        .content {
+            grid-area: content;
+
+            padding: 35px;
+        }
+
+        .content h1 {
+            margin-bottom: 25px;
+        }
+
+        .cards {
+            display: grid;
+
+            grid-template-columns:
+                repeat(auto-fit,
+                    minmax(220px, 1fr));
+
+            gap: 20px;
+        }
+
+        .card {
+            padding: 30px;
+
+            background: white;
+
+            border-radius: 15px;
+
+            box-shadow:
+                0 10px 25px rgba(0, 0, 0, 0.1);
+        }
+
+        .card h2 {
+            margin-bottom: 10px;
+        }
+
+        .footer {
+            grid-area: footer;
+
+            display: grid;
+
+            place-items: center;
+
+            background: #0f172a;
+
+            color: white;
+        }
+
+        @media (max-width: 700px) {
+
+            .dashboard {
+                grid-template-columns: 1fr;
+
+                grid-template-rows:
+                    auto auto 1fr 60px;
+
+                grid-template-areas:
+                    "header"
+                    "sidebar"
+                    "content"
+                    "footer";
+            }
+
+            .sidebar {
+                padding: 20px;
+            }
+        }
+    </style>
+
+</head>
+
+<body>
+
+    <div class="dashboard">
+
+        <header class="header">
+            Student Dashboard
+        </header>
+
+        <aside class="sidebar">
+
+            <h2>Menu</h2>
+
+            <a href="#">Home</a>
+            <a href="#">Courses</a>
+            <a href="#">Projects</a>
+            <a href="#">Profile</a>
+
+        </aside>
+
+        <main class="content">
+
+            <h1>My Skills</h1>
+
+            <section class="cards">
+
+                <div class="card">
+                    <h2>HTML</h2>
+                    <p>Structure</p>
+                </div>
+
+                <div class="card">
+                    <h2>CSS</h2>
+                    <p>Styling</p>
+                </div>
+
+                <div class="card">
+                    <h2>JavaScript</h2>
+                    <p>Functionality</p>
+                </div>
+
+                <div class="card">
+                    <h2>Java</h2>
+                    <p>Programming</p>
+                </div>
+
+            </section>
+
+        </main>
+
+        <footer class="footer">
+            © 2026 Student Dashboard
+        </footer>
+
+    </div>
+
+</body>
+
+</html>
