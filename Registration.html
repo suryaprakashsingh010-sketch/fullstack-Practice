@@ -1,0 +1,1307 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Student Registration Form</title>
+
+
+    <style>
+
+        /* ==================================================
+           RESET
+        ================================================== */
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+
+        /* ==================================================
+           BODY
+        ================================================== */
+
+        body {
+
+            min-height: 100vh;
+
+            display: flex;
+
+            justify-content: center;
+
+            align-items: center;
+
+            padding: 30px;
+
+            font-family:
+                Arial,
+                Helvetica,
+                sans-serif;
+
+            /*
+                Put your classroom image in the
+                same folder and name it:
+
+                student-bg.jpg
+            */
+
+            background-image:
+                linear-gradient(
+                    rgba(0, 0, 0, 0.12),
+                    rgba(0, 0, 0, 0.12)
+                ),
+                url("image copy 2.png");
+
+            background-size: cover;
+
+            background-position: center;
+
+            background-repeat: no-repeat;
+
+            background-attachment: fixed;
+
+            overflow-x: hidden;
+        }
+
+
+        /* ==================================================
+           FORM CARD
+        ================================================== */
+
+        form {
+
+            width: 100%;
+
+            max-width: 520px;
+
+            margin-right: auto;
+
+            margin-left: 5%;
+
+            padding:
+                30px 35px 35px;
+
+            background:
+                rgba(255, 255, 255, 0.97);
+
+            border-radius: 4px;
+
+            box-shadow:
+                0 25px 60px
+                rgba(0, 0, 0, 0.35);
+
+            animation:
+                formEnter 1s ease;
+
+            transition:
+                transform 0.4s ease,
+                box-shadow 0.4s ease;
+        }
+
+
+        /* 3D hover */
+
+        form:hover {
+
+            transform:
+                translateY(-6px)
+                rotateX(1deg);
+
+            box-shadow:
+                0 35px 75px
+                rgba(0, 0, 0, 0.4);
+        }
+
+
+        /* ==================================================
+           TITLE
+        ================================================== */
+
+        h2 {
+
+            margin:
+                -30px -35px 28px;
+
+            padding:
+                18px 20px;
+
+            text-align: center;
+
+            color: white;
+
+            background:
+                rgba(35, 25, 18, 0.85);
+
+            font-size: 25px;
+
+            font-weight: 600;
+
+            letter-spacing: 2px;
+
+            text-transform: uppercase;
+
+            text-shadow:
+                0 2px 5px
+                rgba(0, 0, 0, 0.5);
+
+            animation:
+                titleEnter 0.8s ease;
+        }
+
+
+        /* ==================================================
+           FIELDSET
+        ================================================== */
+
+        fieldset {
+
+            border: none;
+        }
+
+
+        /* ==================================================
+           FORM GROUP
+        ================================================== */
+
+        .form-group {
+
+            margin-bottom: 16px;
+
+            animation:
+                slideInput 0.7s ease both;
+        }
+
+
+        .form-group:nth-child(2) {
+            animation-delay: 0.10s;
+        }
+
+        .form-group:nth-child(3) {
+            animation-delay: 0.15s;
+        }
+
+        .form-group:nth-child(4) {
+            animation-delay: 0.20s;
+        }
+
+        .form-group:nth-child(5) {
+            animation-delay: 0.25s;
+        }
+
+        .form-group:nth-child(6) {
+            animation-delay: 0.30s;
+        }
+
+        .form-group:nth-child(7) {
+            animation-delay: 0.35s;
+        }
+
+        .form-group:nth-child(8) {
+            animation-delay: 0.40s;
+        }
+
+
+        /* ==================================================
+           LABEL
+        ================================================== */
+
+        .main-label {
+
+            display: block;
+
+            margin-bottom: 6px;
+
+            color: #333;
+
+            font-size: 11px;
+
+            font-weight: 700;
+
+            text-transform: uppercase;
+
+            letter-spacing: 0.5px;
+        }
+
+
+        .required {
+
+            color: #d64545;
+
+            font-size: 13px;
+        }
+
+
+        /* ==================================================
+           TEXT INPUTS
+        ================================================== */
+
+        input[type="text"],
+        input[type="email"],
+        input[type="password"],
+        input[type="tel"],
+        input[type="number"],
+        input[type="date"],
+        input[type="time"],
+        input[type="url"],
+        select {
+
+            width: 100%;
+
+            height: 40px;
+
+            padding:
+                8px 12px;
+
+            margin-bottom: 2px;
+
+            border:
+                1px solid #b7c5d0;
+
+            border-radius: 2px;
+
+            background: white;
+
+            color: #333;
+
+            font-size: 12px;
+
+            outline: none;
+
+            transition:
+                border-color 0.3s ease,
+                box-shadow 0.3s ease,
+                transform 0.3s ease;
+        }
+
+
+        /* ==================================================
+           PLACEHOLDER
+        ================================================== */
+
+        input::placeholder,
+        textarea::placeholder {
+
+            color: #999;
+
+            font-size: 11px;
+        }
+
+
+        /* ==================================================
+           INPUT FOCUS
+        ================================================== */
+
+        input:focus,
+        select:focus,
+        textarea:focus {
+
+            border-color: #b55c57;
+
+            box-shadow:
+                0 0 0 3px
+                rgba(181, 92, 87, 0.12);
+
+            transform:
+                translateX(3px);
+        }
+
+
+        /* ==================================================
+           SELECT
+        ================================================== */
+
+        select {
+
+            cursor: pointer;
+        }
+
+
+        /* ==================================================
+           TEXTAREA
+        ================================================== */
+
+        textarea {
+
+            width: 100%;
+
+            min-height: 80px;
+
+            padding: 10px 12px;
+
+            border:
+                1px solid #b7c5d0;
+
+            border-radius: 2px;
+
+            resize: vertical;
+
+            outline: none;
+
+            font-family: Arial, sans-serif;
+
+            font-size: 12px;
+
+            transition:
+                0.3s ease;
+        }
+
+
+        /* ==================================================
+           RADIO / CHECKBOX
+        ================================================== */
+
+        .options {
+
+            display: flex;
+
+            align-items: center;
+
+            flex-wrap: wrap;
+
+            gap: 18px;
+
+            margin-top: 5px;
+        }
+
+
+        .option {
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 5px;
+
+            color: #444;
+
+            font-size: 12px;
+
+            cursor: pointer;
+
+            transition:
+                color 0.3s ease,
+                transform 0.3s ease;
+        }
+
+
+        .option:hover {
+
+            color: #a84e49;
+
+            transform:
+                translateY(-2px);
+        }
+
+
+        input[type="radio"],
+        input[type="checkbox"] {
+
+            width: 15px;
+
+            height: 15px;
+
+            margin: 0;
+
+            cursor: pointer;
+
+            accent-color: #b45c57;
+        }
+
+
+        /* ==================================================
+           FILE INPUT
+        ================================================== */
+
+        input[type="file"] {
+
+            width: 100%;
+
+            padding: 8px 0;
+
+            font-size: 11px;
+
+            color: #555;
+
+            cursor: pointer;
+        }
+
+
+        /* ==================================================
+           COLOR INPUT
+        ================================================== */
+
+        input[type="color"] {
+
+            width: 55px;
+
+            height: 35px;
+
+            padding: 2px;
+
+            border:
+                1px solid #b7c5d0;
+
+            cursor: pointer;
+        }
+
+
+        /* ==================================================
+           RANGE
+        ================================================== */
+
+        input[type="range"] {
+
+            width: 100%;
+
+            accent-color: #b45c57;
+
+            cursor: pointer;
+        }
+
+
+        /* ==================================================
+           BUTTON CONTAINER
+        ================================================== */
+
+        .buttons {
+
+            display: grid;
+
+            grid-template-columns: 1fr 1fr;
+
+            gap: 12px;
+
+            margin-top: 22px;
+        }
+
+
+        /* ==================================================
+           BUTTON
+        ================================================== */
+
+        button {
+
+            position: relative;
+
+            overflow: hidden;
+
+            height: 43px;
+
+            border: none;
+
+            border-radius: 2px;
+
+            color: white;
+
+            font-size: 12px;
+
+            font-weight: 700;
+
+            letter-spacing: 1px;
+
+            text-transform: uppercase;
+
+            cursor: pointer;
+
+            transition:
+                transform 0.3s ease,
+                box-shadow 0.3s ease,
+                background 0.3s ease;
+        }
+
+
+        /* ==================================================
+           REGISTER BUTTON
+        ================================================== */
+
+        .register-btn {
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #a94f4a,
+                    #c46861
+                );
+
+            box-shadow:
+                0 8px 18px
+                rgba(140, 60, 55, 0.25);
+        }
+
+
+        .register-btn:hover {
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #8e3f3b,
+                    #b3544e
+                );
+
+            transform:
+                translateY(-3px);
+
+            box-shadow:
+                0 12px 25px
+                rgba(120, 45, 40, 0.35);
+        }
+
+
+        /* ==================================================
+           RESET BUTTON
+        ================================================== */
+
+        .reset-btn {
+
+            background: #777;
+
+            color: white;
+        }
+
+
+        .reset-btn:hover {
+
+            background: #555;
+
+            transform:
+                translateY(-3px);
+
+            box-shadow:
+                0 10px 20px
+                rgba(0, 0, 0, 0.2);
+        }
+
+
+        /* ==================================================
+           BUTTON SHINE
+        ================================================== */
+
+        button::before {
+
+            content: "";
+
+            position: absolute;
+
+            top: 0;
+
+            left: -120%;
+
+            width: 70%;
+
+            height: 100%;
+
+            background:
+                linear-gradient(
+                    90deg,
+                    transparent,
+                    rgba(255, 255, 255, 0.35),
+                    transparent
+                );
+
+            transform:
+                skewX(-20deg);
+
+            transition:
+                left 0.7s ease;
+        }
+
+
+        button:hover::before {
+
+            left: 140%;
+        }
+
+
+        /* ==================================================
+           BUTTON ACTIVE
+        ================================================== */
+
+        button:active {
+
+            transform:
+                translateY(1px)
+                scale(0.98);
+        }
+
+
+        /* ==================================================
+           FORM ENTER ANIMATION
+        ================================================== */
+
+        @keyframes formEnter {
+
+            from {
+
+                opacity: 0;
+
+                transform:
+                    translateX(-100px)
+                    scale(0.92);
+            }
+
+            to {
+
+                opacity: 1;
+
+                transform:
+                    translateX(0)
+                    scale(1);
+            }
+        }
+
+
+        /* ==================================================
+           TITLE ANIMATION
+        ================================================== */
+
+        @keyframes titleEnter {
+
+            from {
+
+                opacity: 0;
+
+                transform:
+                    translateY(-25px);
+            }
+
+            to {
+
+                opacity: 1;
+
+                transform:
+                    translateY(0);
+            }
+        }
+
+
+        /* ==================================================
+           INPUT ANIMATION
+        ================================================== */
+
+        @keyframes slideInput {
+
+            from {
+
+                opacity: 0;
+
+                transform:
+                    translateX(-25px);
+            }
+
+            to {
+
+                opacity: 1;
+
+                transform:
+                    translateX(0);
+            }
+        }
+
+
+        /* ==================================================
+           TABLET
+        ================================================== */
+
+        @media (max-width: 900px) {
+
+            body {
+
+                padding: 20px;
+
+                background-position:
+                    center;
+            }
+
+
+            form {
+
+                margin-left: 0;
+
+                max-width: 500px;
+            }
+        }
+
+
+        /* ==================================================
+           MOBILE
+        ================================================== */
+
+        @media (max-width: 600px) {
+
+            body {
+
+                padding: 12px;
+
+                align-items:
+                    flex-start;
+
+                background-attachment:
+                    scroll;
+            }
+
+
+            form {
+
+                margin:
+                    20px 0;
+
+                padding:
+                    25px 20px 28px;
+
+                max-width:
+                    100%;
+            }
+
+
+            h2 {
+
+                margin:
+                    -25px -20px 25px;
+
+                font-size:
+                    19px;
+
+                letter-spacing:
+                    1px;
+            }
+
+
+            .buttons {
+
+                grid-template-columns:
+                    1fr;
+            }
+
+
+            .options {
+
+                gap:
+                    12px;
+            }
+        }
+
+
+        /* ==================================================
+           SMALL MOBILE
+        ================================================== */
+
+        @media (max-width: 400px) {
+
+            form {
+
+                padding:
+                    22px 15px 25px;
+            }
+
+
+            h2 {
+
+                margin:
+                    -22px -15px 22px;
+
+                font-size:
+                    17px;
+            }
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+    <!-- ==================================================
+         STUDENT REGISTRATION FORM
+    ================================================== -->
+
+    <form>
+
+
+        <fieldset>
+
+
+            <!-- TITLE -->
+
+            <h2>
+                Student Registration Form
+            </h2>
+
+
+            <!-- NAME -->
+
+            <div class="form-group">
+
+                <label
+                    class="main-label"
+                    for="name">
+
+                    First Name
+                    <span class="required">*</span>
+
+                </label>
+
+
+                <input
+                    type="text"
+                    id="name"
+                    name="name"
+                    minlength="3"
+                    maxlength="30"
+                    autocomplete="name"
+                    placeholder="Enter your name"
+                    required>
+
+            </div>
+
+
+            <!-- EMAIL -->
+
+            <div class="form-group">
+
+                <label
+                    class="main-label"
+                    for="email">
+
+                    Email
+                    <span class="required">*</span>
+
+                </label>
+
+
+                <input
+                    type="email"
+                    id="email"
+                    name="email"
+                    autocomplete="email"
+                    placeholder="Enter your email"
+                    required>
+
+            </div>
+
+
+            <!-- PASSWORD -->
+
+            <div class="form-group">
+
+                <label
+                    class="main-label"
+                    for="password">
+
+                    Password
+                    <span class="required">*</span>
+
+                </label>
+
+
+                <input
+                    type="password"
+                    id="password"
+                    name="password"
+                    placeholder="Enter your password"
+                    required>
+
+            </div>
+
+
+            <!-- PHONE -->
+
+            <div class="form-group">
+
+                <label
+                    class="main-label"
+                    for="phone">
+
+                    Phone
+                    <span class="required">*</span>
+
+                </label>
+
+
+                <input
+                    type="tel"
+                    id="phone"
+                    name="phone"
+                    pattern="[0-9]{10}"
+                    placeholder="10-digit phone number"
+                    required>
+
+            </div>
+
+
+            <!-- AGE -->
+
+            <div class="form-group">
+
+                <label
+                    class="main-label"
+                    for="age">
+
+                    Age
+
+                </label>
+
+
+                <input
+                    type="number"
+                    id="age"
+                    name="age"
+                    min="18"
+                    max="60"
+                    placeholder="Enter your age">
+
+            </div>
+
+
+            <!-- DATE -->
+
+            <div class="form-group">
+
+                <label
+                    class="main-label"
+                    for="dob">
+
+                    Date of Birth
+
+                </label>
+
+
+                <input
+                    type="date"
+                    id="dob"
+                    name="dob">
+
+            </div>
+
+
+            <!-- TIME -->
+
+            <div class="form-group">
+
+                <label
+                    class="main-label"
+                    for="time">
+
+                    Preferred Time
+
+                </label>
+
+
+                <input
+                    type="time"
+                    id="time"
+                    name="time">
+
+            </div>
+
+
+            <!-- GENDER -->
+
+            <div class="form-group">
+
+                <label class="main-label">
+
+                    Gender
+
+                </label>
+
+
+                <div class="options">
+
+
+                    <label class="option">
+
+                        <input
+                            type="radio"
+                            name="gender"
+                            value="male"
+                            required>
+
+                        Male
+
+                    </label>
+
+
+                    <label class="option">
+
+                        <input
+                            type="radio"
+                            name="gender"
+                            value="female">
+
+                        Female
+
+                    </label>
+
+
+                </div>
+
+            </div>
+
+
+            <!-- COURSE -->
+
+            <div class="form-group">
+
+                <label
+                    class="main-label"
+                    for="course">
+
+                    Course
+
+                </label>
+
+
+                <select
+                    id="course"
+                    name="course"
+                    required>
+
+
+                    <option value="">
+
+                        Select Course
+
+                    </option>
+
+
+                    <option value="cse">
+
+                        CSE
+
+                    </option>
+
+
+                    <option value="aiml">
+
+                        AI / ML
+
+                    </option>
+
+
+                    <option value="aids">
+
+                        AI & DS
+
+                    </option>
+
+
+                </select>
+
+            </div>
+
+
+            <!-- SKILLS -->
+
+            <div class="form-group">
+
+                <label class="main-label">
+
+                    Skills
+
+                </label>
+
+
+                <div class="options">
+
+
+                    <label class="option">
+
+                        <input
+                            type="checkbox"
+                            name="skills"
+                            value="html"
+                            checked>
+
+                        HTML
+
+                    </label>
+
+
+                    <label class="option">
+
+                        <input
+                            type="checkbox"
+                            name="skills"
+                            value="css">
+
+                        CSS
+
+                    </label>
+
+
+                    <label class="option">
+
+                        <input
+                            type="checkbox"
+                            name="skills"
+                            value="java">
+
+                        Java
+
+                    </label>
+
+
+                </div>
+
+            </div>
+
+
+            <!-- RESUME -->
+
+            <div class="form-group">
+
+                <label
+                    class="main-label"
+                    for="resume">
+
+                    Resume
+
+                </label>
+
+
+                <input
+                    type="file"
+                    id="resume"
+                    name="resume"
+                    accept=".pdf,.doc,.docx">
+
+            </div>
+
+
+            <!-- COLOR -->
+
+            <div class="form-group">
+
+                <label
+                    class="main-label"
+                    for="color">
+
+                    Favorite Color
+
+                </label>
+
+
+                <input
+                    type="color"
+                    id="color"
+                    name="color"
+                    value="#b45c57">
+
+            </div>
+
+
+            <!-- SKILL LEVEL -->
+
+            <div class="form-group">
+
+                <label
+                    class="main-label"
+                    for="skillLevel">
+
+                    Skill Level
+
+                </label>
+
+
+                <input
+                    type="range"
+                    id="skillLevel"
+                    name="skillLevel"
+                    min="0"
+                    max="100"
+                    step="10"
+                    value="50">
+
+            </div>
+
+
+            <!-- PORTFOLIO -->
+
+            <div class="form-group">
+
+                <label
+                    class="main-label"
+                    for="website">
+
+                    Portfolio Website
+
+                </label>
+
+
+                <input
+                    type="url"
+                    id="website"
+                    name="website"
+                    autocomplete="url"
+                    placeholder="https://example.com">
+
+            </div>
+
+
+            <!-- ABOUT -->
+
+            <div class="form-group">
+
+                <label
+                    class="main-label"
+                    for="about">
+
+                    About
+
+                </label>
+
+
+                <textarea
+                    id="about"
+                    name="about"
+                    minlength="10"
+                    maxlength="300"
+                    placeholder="Tell us about yourself"></textarea>
+
+            </div>
+
+
+            <!-- BUTTONS -->
+
+            <div class="buttons">
+
+
+                <button
+                    type="submit"
+                    class="register-btn">
+
+                    Register
+
+                </button>
+
+
+                <button
+                    type="reset"
+                    class="reset-btn">
+
+                    Reset
+
+                </button>
+
+
+            </div>
+
+
+        </fieldset>
+
+
+    </form>
+
+
+</body>
+
+</html>
