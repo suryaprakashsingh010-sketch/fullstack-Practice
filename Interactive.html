@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Interactive Form</title>
+
+    <link rel="stylesheet" href="style.css">
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            min-height: 100vh;
+
+            display: grid;
+
+            place-items: center;
+
+            margin: 0;
+
+            font-family: Arial, sans-serif;
+
+            background: #e2e8f0;
+        }
+
+        .form {
+            width: min(90%, 450px);
+
+            padding: 30px;
+
+            background: white;
+
+            border-radius: 18px;
+
+            box-shadow:
+                0 20px 50px rgba(0, 0, 0, .12);
+        }
+
+        h1 {
+            margin-bottom: 25px;
+
+            text-align: center;
+
+            color: #1e3a8a;
+        }
+
+        .form>label {
+            display: block;
+
+            margin: 14px 0 6px;
+
+            font-weight: 600;
+        }
+
+        input[type="text"],
+        input[type="email"] {
+            width: 100%;
+
+            padding: 12px;
+
+            border: 2px solid #cbd5e1;
+
+            border-radius: 8px;
+
+            outline: none;
+        }
+
+        input:focus {
+            border-color: #2563eb;
+
+            box-shadow:
+                0 0 0 3px rgba(37, 99, 235, .12);
+        }
+
+        input:valid {
+            border-color: #22c55e;
+        }
+
+        .skills {
+            display: flex;
+
+            gap: 15px;
+
+            flex-wrap: wrap;
+
+            margin: 20px 0;
+        }
+
+        .skills label {
+            cursor: pointer;
+
+            transition: 0.25s;
+        }
+
+        .skills label:hover {
+            color: #2563eb;
+        }
+
+        .skills input:checked+* {
+            color: #2563eb;
+        }
+
+        button {
+            position: relative;
+
+            width: 100%;
+
+            padding: 13px;
+
+            border: none;
+
+            border-radius: 9px;
+
+            background: #2563eb;
+
+            color: white;
+
+            font-weight: bold;
+
+            cursor: pointer;
+
+            overflow: hidden;
+
+            transition: 0.3s;
+        }
+
+        button:hover {
+            transform: translateY(-3px);
+
+            box-shadow:
+                0 12px 25px rgba(37, 99, 235, .25);
+        }
+
+        button:active {
+            transform: scale(0.97);
+        }
+
+        button::after {
+            content: " →";
+
+            position: absolute;
+
+            right: 20px;
+
+            opacity: 0;
+
+            transition: 0.3s;
+        }
+
+        button:hover::after {
+            opacity: 1;
+        }
+    </style>
+</head>
+
+<body>
+
+    <form class="form">
+
+        <h1>
+            Student Registration
+        </h1>
+
+        <label for="name">
+            Name
+        </label>
+
+        <input id="name" type="text" placeholder="Enter your name" required>
+
+
+        <label for="email">
+            Email
+        </label>
+
+        <input id="email" type="email" placeholder="Enter your email" required>
+
+
+        <div class="skills">
+
+            <label>
+                <input type="checkbox" name="skill" value="html">
+
+                HTML
+            </label>
+
+            <label>
+                <input type="checkbox" name="skill" value="css">
+
+                CSS
+            </label>
+
+            <label>
+                <input type="checkbox" name="skill" value="js">
+
+                JavaScript
+            </label>
+
+        </div>
+
+
+        <button type="submit">
+            Register
+        </button>
+
+    </form>
+
+</body>
+
+</html>
